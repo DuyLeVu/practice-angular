@@ -1,36 +1,88 @@
-<form [formGroup]= "registerForm" (submit)="createUser()">
+<form [formGroup]="registerForm" (submit)="createUser()">
   <table>
     <tr>
       <th>Email</th>
       <input type="text" formControlName="email">
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="registerForm.controls['email'].errors?.['required']
+         && registerForm.controls['email'].touched">Email is required!
+      </div>
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="registerForm.controls['email'].errors?.['email']
+         && registerForm.controls['email'].touched">Not a valid email!
+      </div>
     </tr>
     <tr>
       <th>Password</th>
       <input type="text" formControlName="password">
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="registerForm.controls['password'].errors?.['required']
+         && registerForm.controls['password'].touched">Password is required!
+      </div>
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="registerForm.controls['password'].errors?.['minlength']
+         && registerForm.controls['password'].touched">Password length is greater than 6!
+      </div>
     </tr>
     <tr>
       <th>Confirm Password</th>
       <input type="text" formControlName="confirmPassword">
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="registerForm.controls['confirmPassword'].errors?.['required']
+         && registerForm.controls['confirmPassword'].touched">Confirm Password is required!
+      </div>
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="registerForm.controls['confirmPassword'].value != registerForm.controls['password'].value
+         && registerForm.controls['confirmPassword'].touched">
+        Confirm Password doesnt match
+      </div>
     </tr>
     <tr>
       <th>Country</th>
-      <input type="text" formControlName="country">
+      <select formControlName="country">
+        <option value="">Country</option>
+        <option *ngFor="let country of listCountry" value="{{country}}">{{country}}</option>
+      </select>
     </tr>
     <tr>
       <th>Age</th>
       <input type="text" formControlName="age">
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="registerForm.controls['age'].errors?.['required']
+         && registerForm.controls['age'].touched">Age is required!
+      </div>
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="registerForm.controls['age'].errors?.['min']
+         && registerForm.controls['age'].touched">Age is greater than 16!
+      </div>
     </tr>
     <tr>
       <th>Gender</th>
-      <input type="text" formControlName="gender">
+      <th style="float: left"><input type="radio" id="male" formControlName="gender" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" formControlName="gender" value="female">
+        <label for="female">Female</label><br>
+      </th>
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="registerForm.controls['gender'].errors?.['required']
+         && registerForm.controls['gender'].touched">Gender is required!
+      </div>
     </tr>
     <tr>
       <th>Phone</th>
       <input type="text" formControlName="phone">
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="registerForm.controls['phone'].errors?.['required']
+         && registerForm.controls['phone'].touched">Phone is required!
+      </div>
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="registerForm.controls['phone'].errors?.['pattern']
+         && registerForm.controls['phone'].touched"> Invalid Phone Number
+      </div>
     </tr>
     <tr>
       <th></th>
-      <button>Submit</button>
+      <button class="btn btn-info"  [disabled]="!registerForm.valid">Submit</button>
     </tr>
   </table>
 </form>
