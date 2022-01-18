@@ -1,0 +1,36 @@
+<form [formGroup]= "registerForm" (submit)="createUser()">
+  <table>
+    <tr>
+      <th>Email</th>
+      <input type="text" formControlName="email">
+    </tr>
+    <tr>
+      <th>Password</th>
+      <input type="text" formControlName="password">
+    </tr>
+    <tr>
+      <th>Confirm Password</th>
+      <input type="text" formControlName="confirmPassword">
+    </tr>
+    <tr>
+      <th>Country</th>
+      <input type="text" formControlName="country">
+    </tr>
+    <tr>
+      <th>Age</th>
+      <input type="text" formControlName="age">
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <input type="text" formControlName="gender">
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <input type="text" formControlName="phone">
+    </tr>
+    <tr>
+      <th></th>
+      <button>Submit</button>
+    </tr>
+  </table>
+</form>
