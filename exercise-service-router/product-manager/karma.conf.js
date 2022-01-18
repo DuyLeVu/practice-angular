@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-music-management'),
+      dir: require('path').join(__dirname, './coverage/product-manager'),
       subdir: '.',
       reporters: [
         { type: 'html' },
