@@ -1,0 +1,29 @@
+<form [formGroup]="postForm" (ngSubmit)="updatePost()">
+  <table>
+<!--    <tr>-->
+<!--      <td>Ngày tạo: </td>-->
+<!--      <td><input type="text" formControlName="createAt" value="{{post?.createAt | date:'MM/dd/yy'}}"></td>-->
+<!--    </tr>-->
+    <tr>
+      <td>Mô tả: </td>
+      <td><input type="text" class="form-control" formControlName="description" value="{{post?.description}}"></td>
+    </tr>
+    <tr>
+      <td>Nội dung</td>
+      <td><input type="text" formControlName="content" value="{{post?.content}}"></td>
+    </tr>
+    <tr>
+      <td>Trạng thái</td>
+      <td>
+        <select formControlName="status_id">
+          <option disabled>{{post?.status?.name}}</option>
+          <option *ngFor="let stt of status" value="{{stt.id}}">{{stt.name}}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button>Chỉnh sửa</button></td>
+    </tr>
+  </table>
+</form>

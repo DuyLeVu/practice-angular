@@ -5,16 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import { ListPostComponent } from './components/list-post/list-post.component';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { ListStatusComponent } from './components/status-component/list-status/list-status.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListPostComponent
+    ListPostComponent,
+    EditPostComponent,
+    ListStatusComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
