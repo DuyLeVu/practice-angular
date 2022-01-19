@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Post} from "../../models/post";
-import {PostService} from "../../services/post.service";
+import {Post} from "../../../models/post";
+import {PostService} from "../../../services/post.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {Status} from "../../models/status";
-import {StatusService} from "../../services/status-service/status.service";
+import {Status} from "../../../models/status";
+import {StatusService} from "../../../services/status-service/status.service";
 
 @Component({
   selector: 'app-edit-post',
@@ -20,7 +20,7 @@ export class EditPostComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private fb: FormBuilder,
               private statusService: StatusService,
-  private router: Router) {
+              private router: Router) {
   }
 
   postForm: FormGroup = this.fb.group({

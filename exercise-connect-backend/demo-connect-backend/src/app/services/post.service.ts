@@ -24,4 +24,8 @@ export class PostService {
   updatePost(id: string, post: Post): Observable<Post> {
     return this.httpClient.put<Post>(API_URL + `/${id}`, post)
   }
+
+  savePost(post: Post): Observable<Post> {
+    return this.httpClient.post<Post>(API_URL, post)
+  }
 }

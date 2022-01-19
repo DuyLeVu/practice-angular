@@ -1,0 +1,25 @@
+<form [formGroup]="postForm" (ngSubmit)="createPost()">
+  <table>
+    <tr>
+      <td>Mô tả: </td>
+      <td><input type="text" class="form-control" formControlName="description"></td>
+    </tr>
+    <tr>
+      <td>Nội dung</td>
+      <td><input type="text" formControlName="content"></td>
+    </tr>
+    <tr>
+      <td>Trạng thái</td>
+      <td>
+        <select formControlName="status_id">
+          <option disabled>Selected</option>
+          <option *ngFor="let stt of status" value="{{stt.id}}">{{stt.name}}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button>Đăng bài</button></td>
+    </tr>
+  </table>
+</form>
