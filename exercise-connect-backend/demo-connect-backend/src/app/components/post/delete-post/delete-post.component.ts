@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {Post} from "../../../models/post";
+import {Status} from "../../../models/status";
 import {PostService} from "../../../services/post-service/post.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {Status} from "../../../models/status";
+import {FormBuilder} from "@angular/forms";
 import {StatusService} from "../../../services/status-service/status.service";
 
 @Component({
-  selector: 'app-edit-post',
-  templateUrl: './edit-post.component.html',
-  styleUrls: ['./edit-post.component.css']
+  selector: 'app-delete-post',
+  templateUrl: './delete-post.component.html',
+  styleUrls: ['./delete-post.component.css']
 })
-export class EditPostComponent implements OnInit {
+export class DeletePostComponent implements OnInit {
   // @ts-ignore
   post: Post;
   status: Status[] = [];
@@ -22,13 +22,6 @@ export class EditPostComponent implements OnInit {
               private statusService: StatusService,
               private router: Router) {
   }
-
-  postForm: FormGroup = this.fb.group({
-    createAt: new FormControl(''),
-    description: new FormControl(''),
-    content: new FormControl(''),
-    status_id: new FormControl(''),
-  })
 
   ngOnInit(): void {
     this.statusService.getAll().subscribe(rs => {
@@ -46,24 +39,16 @@ export class EditPostComponent implements OnInit {
         console.log(error);
       })
     })
-
   }
 
-  updatePost() {
-    const post = {
-      createAt: new Date(),
-      description: this.postForm.value.description,
-      content: this.postForm.value.content,
-      status: {
-        id: this.postForm.value.status_id
-      }
+  deletePost() {
+    if (confirm("Bạn có thật sự muốn xóa bài ?")) {
+      // @ts-ignore
+      this.postService.deletePost(this.post.id).subscribe(() => {
+        alert("Thành công!")
+        this.router.navigate([""]);
+      })
     }
-    console.log(post);
-    // @ts-ignore
-    this.postService.updatePost(this.post.id, post).subscribe(() => {
-      alert("Thành công!")
-      this.router.navigate([""]);
-    })
   }
 
 }

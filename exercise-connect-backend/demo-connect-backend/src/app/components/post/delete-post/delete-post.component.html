@@ -1,0 +1,28 @@
+<div>
+  <table>
+    <tr>
+      <td>Ngày tạo:</td>
+      <td>{{post?.createAt | date:'MM/dd/yy'}}</td>
+    </tr>
+    <tr>
+      <td>Mô tả:</td>
+      <td>{{post?.description}}
+      </td>
+    </tr>
+    <tr>
+      <td>Nội dung:</td>
+      <td>{{post?.content}}</td>
+    </tr>
+    <tr>
+      <td>Trạng thái:</td>
+      <td>{{post?.status?.name}}
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button (click)="deletePost()">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>

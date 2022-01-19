@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import { ListPostComponent } from './components/post/list-post/list-post.component';
 import { EditPostComponent } from './components/post/edit-post/edit-post.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ListStatusComponent } from './components/status-component/list-status/list-status.component';
 import { CreatePostComponent } from './components/post/create-post/create-post.component';
+import { DeletePostComponent } from './components/post/delete-post/delete-post.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +17,15 @@ import { CreatePostComponent } from './components/post/create-post/create-post.c
     ListPostComponent,
     EditPostComponent,
     ListStatusComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    DeletePostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
