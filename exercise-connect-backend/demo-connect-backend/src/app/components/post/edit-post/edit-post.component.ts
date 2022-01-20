@@ -15,6 +15,7 @@ export class EditPostComponent implements OnInit {
   // @ts-ignore
   post: Post;
   status: Status[] = [];
+  currentStatus!: Status;
 
   constructor(private postService: PostService,
               private activatedRoute: ActivatedRoute,
@@ -24,10 +25,11 @@ export class EditPostComponent implements OnInit {
   }
 
   postForm: FormGroup = this.fb.group({
-    createAt: new FormControl(''),
-    description: new FormControl(''),
-    content: new FormControl(''),
-    status_id: new FormControl(''),
+    id: new FormControl(),
+    createAt: new FormControl(),
+    description: new FormControl(),
+    content: new FormControl(),
+    status_id: new FormControl(),
   })
 
   ngOnInit(): void {
@@ -40,27 +42,36 @@ export class EditPostComponent implements OnInit {
       console.log(id);
       // @ts-ignore
       this.postService.getPostById(id).subscribe(result => {
-        this.post = result;
-        console.log(result)
+        console.log(result);
+        this.postForm = new FormGroup({
+          id: new FormControl(result.id),
+          createAt: new FormControl(result.createAt),
+          description: new FormControl(result.description),
+          content: new FormControl(result.content),
+          status_id: new FormControl(result.status?.id),
+        });
       }, error => {
         console.log(error);
       })
     })
-
   }
 
   updatePost() {
     const post = {
-      createAt: new Date(),
       description: this.postForm.value.description,
       content: this.postForm.value.content,
       status: {
         id: this.postForm.value.status_id
       }
     }
+    // if (post.status == null) {
+    //   post.status = this.postForm.value.status.id
+    // }
+    // this.currentStatus = {id: post.status}
+    // post.status = this.currentStatus;
     console.log(post);
     // @ts-ignore
-    this.postService.updatePost(this.post.id, post).subscribe(() => {
+    this.postService.updatePost(this.postForm.value.id, post).subscribe(() => {
       alert("Thành công!")
       this.router.navigate([""]);
     })
